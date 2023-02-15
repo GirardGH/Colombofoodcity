@@ -2,7 +2,12 @@ const express = require("express");
 const fs = require("fs");
 const path = require("path");
 const cors = require("cors");
-const router = require("./router");
+
+const usersRouter = require("./routes/users.routes");
+const productsRouter = require("./routes/products.routes");
+const categoriesRouter = require("./routes/categories.routes");
+const ordersRouter = require("./routes/orders.routes");
+const reviewsRouter = require("./routes/reviews.routes");
 
 const app = express();
 
@@ -23,7 +28,11 @@ app.use(express.static(path.join(__dirname, "../public")));
 app.use(express.static(path.join(__dirname, "..", "..", "frontend", "dist")));
 
 // API routes
-app.use(router);
+app.use(usersRouter);
+app.use(productsRouter);
+app.use(categoriesRouter);
+app.use(ordersRouter);
+app.use(reviewsRouter);
 
 // Redirect all requests to the REACT app
 const reactIndexFile = path.join(
